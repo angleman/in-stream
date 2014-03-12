@@ -1,11 +1,6 @@
 // in-stream
 fs    = require('fs')
 argv  = argv = require('minimist')(process.argv.slice(2))
-if (argv.f) {
-	console.log('instream:', argv.f)
-} else {
-	console.log('instream: stdin')
-}
 
 options = { 
   flags:     'r',
