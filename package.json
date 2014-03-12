@@ -7,8 +7,7 @@
     "test": "mocha -R list test/*.js"
   },
   "dependencies": {
-    "readable-stream": "~1.0.26",
-    "xtend": "^2.1.2"
+    "minimist": "0.0.8"
   },
   "devDependencies": {
     "grunt": "^0.4.3",

@@ -1,43 +1,43 @@
-# template-stream
+# in-stream
 
-Template Stream
+stdin or -f command line file read stream (stream2 for node 0.8.x)
+
+## Use Case
+
+Assist with pipable shell. Also see [out-stream](https://github.com/angleman/out-stream)
 
 ## Install
 
 ```sh
-npm install template-stream
+npm install in-stream
 ```
 
 ## Usage
 
-Building your own streams
+**sample.txt**
 
-```js
-tStream = new require('template-stream')({ jsonOut: 'auto', filterErrors: false }) // default config
-tStream.bind('onTransform', function(data) {
-	// do your processing here
-	return data // return data to be pushed down stream, return undefined to filter the data
-})
+```
+hello
 ```
 
-## Config
-
-```jsonOut``` json true/false string output down stream. 'auto' = same form as upstream
-```filterErrors``` false=json parse errors emit the error, true=json parse errors are silently filtered
-
-## Statistics
+**myapp**:
 
 ```js
-// all
-console.log(tStream.stat()) // { processed: 942, filtered: 18, badJson: 2 }
-
-// particular statistic
-console.log(tStream.stat('filtered')) // 18
-
-// your own statistics
-tStream.bump('myStat')
-console.log(tStream.stat()) // { processed: 942, filtered: 18, badJson: 2, myStat: 1 }
+#!/usr/local/bin/node
+inStream = require('in-stream')
+inStream.pipe(process.stdout)
 ```
+
+```sh
+ls | ./myapp
+// myapp
+// sample.txt
+
+./myapp -f sample.txt
+// hello 
+```
+
+Remember to ```chmod a+x myapp``` to make it executable
 
 ## License
 
